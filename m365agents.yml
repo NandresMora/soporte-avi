@@ -1,0 +1,12 @@
+version: 1.0
+project:
+  name: hr-policy-assistant
+  templateFolder: appPackage
+  manifestFile: appPackage/manifest.template.json
+
+environments:
+  dev:
+    envFile: ./env/.env.dev
+    output:
+      manifestFile: appPackage/build/manifest.dev.json
+      packageZipFile: appPackage/build/appPackage.dev.zip
