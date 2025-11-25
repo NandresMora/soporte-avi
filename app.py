@@ -45,14 +45,23 @@ def initialize_rag():
         return False
 
     try:
-        embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+        # ✅ INICIALIZACIÓN LIMPIA - SIN PROXIES
+        embeddings = OpenAIEmbeddings(api_key=OPENAI_API_KEY)  # Cambiado: api_key en lugar de openai_api_key
         vectorstore = FAISS.load_local(
             FAISS_INDEX_PATH,
             embeddings,
             allow_dangerous_deserialization=True
         )
-        llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.1, openai_api_key=OPENAI_API_KEY)
+        
+        # ✅ ChatOpenAI con parámetros correctos para openai>=1.0
+        llm = ChatOpenAI(
+            model="gpt-3.5-turbo",
+            temperature=0.1,
+            api_key=OPENAI_API_KEY,  # Cambiado: api_key en lugar de openai_api_key
+            max_tokens=1000
+        )
 
+        # Resto del código igual...
         prompt_template = """Eres Soporte-AVI, un asistente técnico profesional y amable.
 Responde ÚNICAMENTE basándote en el contexto que se te proporciona.
 Si no sabes la respuesta, di: "Lo siento, esa información no está en mi base de conocimiento de TI. ¿Quieres que cree un ticket para que un técnico te ayude?"
@@ -71,7 +80,6 @@ Respuesta útil y clara:"""
                 return_source_documents=False
             )
         else:
-            # código nuevo (igual que tenías)
             system_prompt = prompt_template.replace("{question}", "{input}")
             prompt = ChatPromptTemplate.from_messages([
                 ("system", system_prompt),
@@ -86,6 +94,8 @@ Respuesta útil y clara:"""
 
     except Exception as e:
         print(f"ERROR crítico al cargar RAG: {e}")
+        import traceback
+        traceback.print_exc()  # Para ver el error completo en logs
         return False
 
 # Inicializar al arrancar
