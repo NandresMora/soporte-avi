@@ -30,46 +30,39 @@ vectorstore = None
 qa_chain = None
 
 def initialize_rag():
-   global vectorstore, qa_chain
-    print(f"DEBUG: OPENAI_API_KEY presente: {'Sí' if OPENAI_API_KEY else 'NO'}")  # Agrega esto
+    global vectorstore, qa_chain
+    print("DEBUG: Iniciando carga del RAG...")
+    print(f"DEBUG: OPENAI_API_KEY presente → {'Sí' if OPENAI_API_KEY else 'NO'}")
+    print(f"DEBUG: Buscando carpeta en → {os.path.abspath(FAISS_INDEX_PATH)}")
+    print(f"DEBUG: Existe faiss_index → {os.path.exists(FAISS_INDEX_PATH)}")
+
     if not OPENAI_API_KEY:
-        print("ERROR: OPENAI_API_KEY no configurada")
+        print("ERROR: Falta OPENAI_API_KEY en variables de entorno")
         return False
-    print(f"DEBUG: Carpeta faiss_index existe: {os.path.exists(FAISS_INDEX_PATH)}")  # Agrega esto
+
     if not os.path.exists(FAISS_INDEX_PATH):
-        print(f"ERROR: No existe {FAISS_INDEX_PATH}")
+        print("ERROR: No se encuentra la carpeta faiss_index (index.faiss + index.pkl)")
         return False
+
     try:
-        # Explicit api_key para evitar OpenAIError
         embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
         vectorstore = FAISS.load_local(
             FAISS_INDEX_PATH,
             embeddings,
             allow_dangerous_deserialization=True
         )
-
-        llm = ChatOpenAI(
-            model="gpt-3.5-turbo",
-            temperature=0.1,
-            openai_api_key=OPENAI_API_KEY  # Explicit para fix key error
-        )
+        llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.1, openai_api_key=OPENAI_API_KEY)
 
         prompt_template = """Eres Soporte-AVI, un asistente técnico profesional y amable.
 Responde ÚNICAMENTE basándote en el contexto que se te proporciona.
 Si no sabes la respuesta, di: "Lo siento, esa información no está en mi base de conocimiento de TI. ¿Quieres que cree un ticket para que un técnico te ayude?"
-
 Contexto:
 {context}
-
 Pregunta del usuario: {question}
 Respuesta útil y clara:"""
 
         if USE_LEGACY:
-            PROMPT = PromptTemplate(
-                template=prompt_template,
-                input_variables=["context", "question"]
-            )
-
+            PROMPT = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
             qa_chain = RetrievalQA.from_chain_type(
                 llm=llm,
                 chain_type="stuff",
@@ -78,22 +71,22 @@ Respuesta útil y clara:"""
                 return_source_documents=False
             )
         else:
+            # código nuevo (igual que tenías)
             system_prompt = prompt_template.replace("{question}", "{input}")
             prompt = ChatPromptTemplate.from_messages([
                 ("system", system_prompt),
                 ("human", "{input}")
             ])
-
             question_answer_chain = create_stuff_documents_chain(llm, prompt)
             retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
             qa_chain = create_retrieval_chain(retriever, question_answer_chain)
 
-        print("Sistema RAG inicializado correctamente (con fix proxies y key)")
+        print("¡RAG inicializado correctamente! Chatbot listo para responder")
         return True
 
     except Exception as e:
-       print("DEBUG: RAG cargado OK")  # Al final del try
-    return True
+        print(f"ERROR crítico al cargar RAG: {e}")
+        return False
 
 # Inicializar al arrancar
 rag_ready = initialize_rag()
