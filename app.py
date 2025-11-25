@@ -30,15 +30,15 @@ vectorstore = None
 qa_chain = None
 
 def initialize_rag():
-    global vectorstore, qa_chain
+   global vectorstore, qa_chain
+    print(f"DEBUG: OPENAI_API_KEY presente: {'Sí' if OPENAI_API_KEY else 'NO'}")  # Agrega esto
     if not OPENAI_API_KEY:
-        print("ERROR: OPENAI_API_KEY no configurada – verifica .env")
+        print("ERROR: OPENAI_API_KEY no configurada")
         return False
-
+    print(f"DEBUG: Carpeta faiss_index existe: {os.path.exists(FAISS_INDEX_PATH)}")  # Agrega esto
     if not os.path.exists(FAISS_INDEX_PATH):
-        print(f"ERROR: No existe la carpeta {FAISS_INDEX_PATH}. Ejecuta index_pdfs.py primero")
+        print(f"ERROR: No existe {FAISS_INDEX_PATH}")
         return False
-
     try:
         # Explicit api_key para evitar OpenAIError
         embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
@@ -92,8 +92,8 @@ Respuesta útil y clara:"""
         return True
 
     except Exception as e:
-        print(f"Error inicializando RAG: {e}")
-        return False
+       print("DEBUG: RAG cargado OK")  # Al final del try
+    return True
 
 # Inicializar al arrancar
 rag_ready = initialize_rag()
