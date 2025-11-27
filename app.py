@@ -24,7 +24,7 @@ app = Flask(__name__)
 CORS(app)
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-FAISS_INDEX_PATH = "faiss_index"
+FAISS_INDEX_PATH = os.path.join(os.path.dirname(__file__), "faiss_index")
 
 vectorstore = None
 qa_chain = None
