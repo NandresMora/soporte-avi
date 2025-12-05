@@ -1,0 +1,56 @@
+{
+  "categoria": "wifi",
+  "titulo": "Solución de Problemas: Conexión WiFi",
+  "ultima_actualizacion": "2024-11-30",
+  "diagnostico_rapido": [
+    {
+      "paso": 1,
+      "titulo": "Verificar adaptador WiFi",
+      "descripcion": "Asegúrate que el icono de WiFi esté encendido. A veces una tecla de función (Fn + F2/F3) puede desactivarlo accidentalmente"
+    },
+    {
+      "paso": 2,
+      "titulo": "Reiniciar conexión",
+      "descripcion": "Apaga y enciende el adaptador WiFi desde el Centro de actividades (Windows + A)"
+    },
+    {
+      "paso": 3,
+      "titulo": "Olvidar y reconectar red",
+      "descripcion": "Ve a Configuración > Red e Internet > WiFi > Administrar redes conocidas > Selecciona tu red > Olvidar. Luego conéctate de nuevo"
+    },
+    {
+      "paso": 4,
+      "titulo": "Reiniciar equipo",
+      "descripcion": "Un reinicio completo puede resolver problemas del controlador de red"
+    }
+  ],
+  "problemas_comunes": {
+    "no_ve_red": {
+      "sintoma": "No aparece la red WiFi de la oficina",
+      "solucion": [
+        "Verificar que otros dispositivos vean la red",
+        "Reiniciar router (si tienes acceso)",
+        "Verificar que el adaptador WiFi esté habilitado",
+        "Actualizar driver del adaptador WiFi"
+      ]
+    },
+    "conectado_sin_internet": {
+      "sintoma": "Conectado pero sin acceso a internet",
+      "solucion": [
+        "Abrir CMD y ejecutar: ipconfig /release",
+        "Luego: ipconfig /renew",
+        "Vaciar caché DNS: ipconfig /flushdns",
+        "Reiniciar router si el problema persiste"
+      ]
+    },
+    "conexion_intermitente": {
+      "sintoma": "Se desconecta constantemente",
+      "solucion": [
+        "Acercarse al punto de acceso",
+        "Verificar interferencias (microondas, teléfonos)",
+        "Desactivar administración de energía del adaptador",
+        "Actualizar driver WiFi"
+      ]
+    }
+  }
+}

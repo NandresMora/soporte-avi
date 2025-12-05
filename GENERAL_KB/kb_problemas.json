@@ -1,0 +1,73 @@
+{
+  "categoria": "impresoras",
+  "titulo": "Solución de Problemas: Impresoras",
+  "ultima_actualizacion": "2024-11-30",
+  "descripcion": "Guía para resolver problemas con impresoras de oficina",
+  "diagnostico_rapido": [
+    {
+      "paso": 1,
+      "titulo": "Verificar estado físico",
+      "descripcion": "Asegúrate de que la impresora esté encendida, tenga papel en la bandeja correcta y no muestre luces de error (falta de tóner/tinta o atasco)"
+    },
+    {
+      "paso": 2,
+      "titulo": "Cancelar cola de impresión",
+      "descripcion": "En el panel de control de impresoras, haz doble clic en la impresora y cancela todos los documentos pendientes. Una tarea corrupta puede bloquear la cola"
+    },
+    {
+      "paso": 3,
+      "titulo": "Verificar conexión",
+      "descripcion": "Si es USB: desconecta y vuelve a conectar. Si es de red: verifica que tu equipo esté en la misma red y que la IP de la impresora sea correcta"
+    },
+    {
+      "paso": 4,
+      "titulo": "Reiniciar servicio de impresión",
+      "descripcion": "En el buscador de Windows escribe 'Servicios', busca 'Cola de impresión' (Print Spooler), haz clic derecho y selecciona 'Reiniciar'"
+    },
+    {
+      "paso": 5,
+      "titulo": "Reiniciar impresora y equipo",
+      "descripcion": "Apaga la impresora, espera 30 segundos y enciéndela. Luego reinicia tu equipo"
+    }
+  ],
+  "problemas_comunes": {
+    "impresora_offline": {
+      "sintoma": "La impresora aparece como 'Sin conexión' o 'Offline'",
+      "solucion": [
+        "Abrir Panel de Control > Dispositivos e Impresoras",
+        "Clic derecho en la impresora > Propiedades",
+        "Desmarcar 'Usar impresora sin conexión'",
+        "Verificar que esté marcada como 'Predeterminada'"
+      ]
+    },
+    "no_imprime": {
+      "sintoma": "Envío trabajos pero no imprime nada",
+      "solucion": [
+        "Verificar cola de impresión (puede estar bloqueada)",
+        "Cancelar todos los trabajos pendientes",
+        "Hacer ping a la IP de la impresora",
+        "Reinstalar driver si es necesario"
+      ]
+    },
+    "impresion_lenta": {
+      "sintoma": "Tarda mucho en imprimir",
+      "solucion": [
+        "Verificar tamaño del documento (PDFs grandes tardan más)",
+        "Reducir calidad de impresión en preferencias",
+        "Verificar conexión de red (si es impresora de red)",
+        "Actualizar driver de impresora"
+      ]
+    },
+    "atasco_papel": {
+      "sintoma": "Error de atasco de papel",
+      "solucion": [
+        "Apagar impresora",
+        "Abrir todas las bandejas y puertas",
+        "Retirar papel atascado con cuidado (no romper)",
+        "Verificar que no queden restos de papel",
+        "Cerrar todo y encender"
+      ]
+    }
+  },
+  "escalamiento": "Si nada funciona, crea un ticket a través del chatbot AVI para que IT se ponga en contacto"
+}

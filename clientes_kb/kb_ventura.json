@@ -1,0 +1,94 @@
+{
+    "metadata": {
+    "nombre_completo": "Ventura (Contabilidad)",
+    "sector": "Servicios Contables",
+    "ultima_actualizacion": "2024-12-03"
+    },
+    
+    "vpn": {
+    "titulo": "Configuración VPN Ventura",
+    "nombre": "OpenVPN",
+    "servidor": "vpn.ventura.com.co",
+    "puerto": "1194",
+    "tipo_autenticacion": "Usuario y contraseña de red",
+    "notas": "VPN esencial para acceder al servidor Siigo desde fuera de oficina.",
+    "troubleshooting": [
+        "Verificar instalación de OpenVPN Client",
+        "Servidor: vpn.ventura.com.co puerto 1194",
+        "Descargar perfil de conexión si es primera vez",
+        "Verificar firewall no bloquee puerto 1194"
+    ]
+    },
+    
+    "wifi": {
+    "titulo": "Red WiFi Ventura",
+    "ssid": "VENTURA",
+    "password": "Ventura2024!",
+    "tipo_seguridad": "WPA2-PSK",
+    "notas": "Red corporativa principal",
+    "troubleshooting": [
+        "SSID: VENTURA (todo mayúsculas)",
+        "Contraseña: Ventura2024!",
+        "Si hay problemas: Olvidar red y reconectar",
+        "Verificar adaptador WiFi habilitado"
+    ]
+    },
+    
+    "impresoras": [
+    {
+        "nombre": "Canon ImageRUNNER Color",
+        "ip": "10.10.10.50",
+        "ubicacion": "Piso 1 - Área contable",
+        "tipo": "Multifuncional Color",
+        "driver": "Canon Generic Plus UFR II",
+        "uso": "Documentos confidenciales y gran volumen"
+    },
+    {
+        "nombre": "HP LaserJet B/N",
+        "ip": "10.10.10.51",
+        "ubicacion": "Piso 2 - Administrativa",
+        "tipo": "Láser B/N",
+        "driver": "HP Universal Print Driver",
+        "uso": "Impresión administrativa general"
+    }
+    ],
+    
+    "licencias": {
+    "microsoft_office": {
+        "version": "Microsoft 365 Apps",
+        "tipo": "Corporativa",
+        "proceso_solicitud": "Jefe directo envía formato oficial a Jorge Pulido"
+    }
+    },
+    
+    "aplicativos": [
+    {
+        "nombre": "Sistema Siigo",
+        "tipo": "ERP Contable",
+        "url": "https://siigo.ventura.local",
+        "usuario": "Ventura",
+        "password": "Ven2024$",
+        "notas": "Si el servidor se congela o está lento: cerrar sesión y reingresar",
+        "troubleshooting": [
+        "Verificar conexión VPN si estás remoto",
+        "Cerrar sesión y volver a entrar",
+        "Limpiar caché de Siigo",
+        "Verificar que no haya actualizaciones pendientes"
+        ]
+    },
+    {
+        "nombre": "Escáner Compartido",
+        "tipo": "Carpeta de red",
+        "ruta": "\\\\servidor-ventura\\escaneos",
+        "acceso": "Usuario de red",
+        "notas": "Para temas de scanner, acceder a carpeta compartida de red"
+    }
+    ],
+    
+    "soporte": {
+    "extension": "302",
+    "email": "soporte@ventura.com.co",
+    "horario": "Lunes a Viernes 7:30am - 5:30pm",
+    "contacto_it": "Jorge Pulido - Infraestructura IT"
+    }
+}      

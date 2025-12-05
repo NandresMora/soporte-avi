@@ -1,0 +1,47 @@
+{
+  "categoria": "vpn",
+  "titulo": "Solución de Problemas: VPN Corporativa",
+  "ultima_actualizacion": "2024-11-30",
+  "diagnostico_rapido": [
+    {
+      "paso": 1,
+      "titulo": "Verificar internet",
+      "descripcion": "Confirma que tengas conexión a internet antes de conectar VPN"
+    },
+    {
+      "paso": 2,
+      "titulo": "Verificar credenciales",
+      "descripcion": "Usa tu usuario y contraseña de red corporativa"
+    },
+    {
+      "paso": 3,
+      "titulo": "Verificar configuración",
+      "descripcion": "Confirma servidor, puerto y tipo de VPN correctos según tu empresa"
+    },
+    {
+      "paso": 4,
+      "titulo": "Desconectar y reconectar",
+      "descripcion": "Cierra el cliente VPN completamente y vuelve a conectar"
+    }
+  ],
+  "problemas_comunes": {
+    "no_conecta": {
+      "sintoma": "Error al intentar conectar",
+      "solucion": [
+        "Verificar usuario y contraseña",
+        "Confirmar servidor y puerto correctos",
+        "Verificar firewall no bloquee VPN",
+        "Reinstalar cliente VPN"
+      ]
+    },
+    "conecta_pero_no_accede": {
+      "sintoma": "VPN conectada pero no accede a recursos",
+      "solucion": [
+        "Verificar rutas de red",
+        "Hacer ping a recursos internos",
+        "Verificar DNS corporativo",
+        "Desconectar y reconectar"
+      ]
+    }
+  }
+}

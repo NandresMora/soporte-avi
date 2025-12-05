@@ -1,0 +1,105 @@
+{
+    "metadata": {
+    "nombre_completo": "Setri (Construcción)",
+    "sector": "Construcción e Ingeniería",
+    "ultima_actualizacion": "2024-12-03"
+    },
+    
+    "vpn": {
+    "titulo": "Configuración VPN Setri",
+    "nombre": "FortiClient VPN",
+    "servidor": "vpn.setri.com.co",
+    "puerto": "10443",
+    "tipo_autenticacion": "Usuario y contraseña de red",
+    "notas": "VPN vital para acceso remoto a servidores de planos y gestión de proyectos en obra.",
+    "troubleshooting": [
+        "Instalar FortiClient VPN",
+        "Configurar servidor: vpn.setri.com.co",
+        "Puerto: 10443",
+        "Usar credenciales de red corporativa"
+    ]
+    },
+    
+    "wifi": {
+    "titulo": "Red WiFi Setri",
+    "ssid": "SetriAbogados",
+    "password": "Setri2024#",
+    "tipo_seguridad": "WPA2-PSK",
+    "notas": "Red de oficina para equipos de escritorio y portátiles"
+    },
+    
+    "impresoras": [
+    {
+        "nombre": "HP DesignJet T520 (Plotter A0)",
+        "ip": "192.168.20.100",
+        "ubicacion": "Sala de diseño",
+        "tipo": "Plotter gran formato",
+        "driver": "HP DesignJet Universal Print Driver",
+        "formatos": "A0, A1, A2, A3",
+        "uso": "Impresión de planos arquitectónicos",
+        "troubleshooting": [
+        "Verificar driver HP DesignJet actualizado",
+        "Hacer ping a 192.168.20.100",
+        "Verificar papel cargado correctamente",
+        "Limpiar cabezales si hay líneas"
+        ]
+    },
+    {
+        "nombre": "Epson SureColor T3170 (Plotter A1)",
+        "ip": "192.168.20.101",
+        "ubicacion": "Oficina técnica",
+        "tipo": "Plotter formato medio",
+        "driver": "Epson Universal Print Driver",
+        "formatos": "A1, A2, A3"
+    }
+    ],
+    
+    "licencias": {
+    "microsoft_office": {
+        "version": "Microsoft 365 Apps",
+        "tipo": "Corporativa",
+        "proceso_solicitud": "Jefe directo envía formato a Jorge Pulido"
+    }
+    },
+    
+    "aplicativos": [
+    {
+        "nombre": "Sistema Contabilidad Setri",
+        "url": "https://conta.setri.local",
+        "usuario": "Setri2024",
+        "password": "Setri!2024",
+        "notas": "Si está lento: contactar soporte para verificar base de datos"
+    },
+    {
+        "nombre": "Software CAD/BIM",
+        "tipo": "Herramientas de diseño",
+        "descripcion": "AutoCAD y Revit para planos",
+        "licencias": "Administradas por IT",
+        "troubleshooting": [
+        "Si falla licencia: reiniciar software",
+        "Verificar conexión a internet",
+        "Contactar IT si persiste el error"
+        ]
+    },
+    {
+        "nombre": "Gestión de Proyectos (Obra)",
+        "tipo": "Plataforma de seguimiento",
+        "url": "https://proyectos.setri.local",
+        "descripcion": "Seguimiento de avances y recursos en obras"
+    },
+    {
+        "nombre": "Plataforma Colaboración Planos",
+        "tipo": "Carpeta compartida",
+        "ruta": "\\\\servidor-setri\\planos",
+        "notas": "Acceso requiere VPN si estás remoto"
+    }
+    ],
+    
+    "soporte": {
+    "extension": "303",
+    "email": "soporte@setri.com.co",
+    "horario": "Lunes a Viernes 7:00am - 6:00pm",
+    "contacto_it": "Jorge Pulido - Infraestructura IT"
+    }
+}
+  
