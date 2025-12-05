@@ -52,8 +52,7 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
-faiss_index_soporte_avi/  # TEMPORAL: lo subiremos manualmente
-IT_FAQ_Docs/
+
 .git/
 .vscode/
 .github/
