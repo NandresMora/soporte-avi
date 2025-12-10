@@ -90,7 +90,7 @@ def create_glpi_ticket(ticket_data, cliente):
     """Crea ticket en GLPI 10.18 LOCAL con XAMPP"""
     
     # 🔗 VERSION LOCAL
-    GLPI_BASE = "http://localhost"
+    GLPI_BASE = "https://monzonitic-lila-bipedally.ngrok-free.dev"
     GLPI_API = f"{GLPI_BASE}/glpi/apirest.php"
     
     # 🔑 Credenciales + App-Token REAL
