@@ -54,7 +54,7 @@ PASOS_TROUBLESHOOTING = {
         },
         {
             "paso": 3,
-            "pregunta": "Último intento:\n1. Cierra el cliente VPN\n2. Reinicia tu equipo\n3. Vuelve a conectar\n\n👉 Responde: **funcionó** / **sigue sin funcionar**",
+            "pregunta": "Último intento:\n1. Cierra el cliente VPN\n2. Reinicia tu equipo\n3. Vuelve a conectar\n\n👉 Responde: **funcionó** / **no funcionar**",
             "si_falla": "ticket"
         }
     ],
