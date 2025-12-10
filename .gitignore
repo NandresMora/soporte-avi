@@ -1,0 +1,61 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+coverage
+
+# Turbo
+.turbo
+
+# Vercel
+.vercel
+
+# Build Outputs
+.next/
+out/
+build
+dist
+
+# Generated documentation files
+teams.md/docs/main/typescript/
+teams.md/docs/main/csharp/
+teams.md/docs/main/python/
+
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+.DS_Store
+*.pem
+.specstory
+
+# Custom ignores
+@"
+.env
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+.git/
+.vscode/
+.github/
+packages/
+teams.md/
+"@ | Out-File -FilePath .gitignore -Encoding utf8 -Force

@@ -1,0 +1,117 @@
+ 
+ 
+{
+    "metadata": {
+    "nombre_completo": "Axia (Firma de Abogados)",
+    "sector": "Legal",
+    "ultima_actualizacion": "2024-12-03"
+    },
+    
+    "vpn": {
+    "titulo": "Configuración VPN Axia",
+    "nombre": "Cisco AnyConnect",
+    "servidor": "vpn.axia.com.co",
+    "puerto": "443",
+    "tipo_autenticacion": "Usuario y contraseña de red",
+    "notas": "La VPN es necesaria para acceder a expedientes y bases de datos legales desde ubicaciones externas.",
+    "troubleshooting": [
+        "Verificar que Cisco AnyConnect esté instalado",
+        "Confirmar que el servidor sea vpn.axia.com.co",
+        "Usar credenciales de red corporativa",
+        "Si falla: desconectar y reconectar",
+        "Verificar conexión a internet antes de conectar VPN"
+    ]
+    },
+    
+    "wifi": {
+    "titulo": "Red WiFi Axia",
+    "ssid": "Oficina-Axia",
+    "password": "Axia2024!",
+    "tipo_seguridad": "WPA2-Enterprise",
+    "notas": "Red de alta seguridad para manejo de información confidencial de clientes.",
+    "troubleshooting": [
+        "Verificar que el SSID sea exactamente 'Oficina-Axia'",
+        "Contraseña: Axia2024! (distingue mayúsculas)",
+        "Si no conecta: Olvidar red y reconectar",
+        "Verificar que el adaptador WiFi esté habilitado",
+        "Cambios de contraseña se avisan 24h antes por correo"
+    ]
+    },
+    
+    "impresoras": [
+    {
+        "nombre": "HP LaserJet Pro M404 (Principal)",
+        "ip": "192.168.50.100",
+        "ubicacion": "Recepción principal",
+        "tipo": "Láser B/N",
+        "driver": "HP Universal Print Driver",
+        "uso": "Impresora de alto rendimiento para documentos legales y expedientes",
+        "troubleshooting": [
+        "Verificar que esté encendida",
+        "Hacer ping a 192.168.50.100 para verificar conectividad",
+        "Cancelar cola de impresión si está atascada",
+        "Verificar nivel de tóner",
+        "Reiniciar el servicio Print Spooler en Windows"
+        ]
+    }
+    ],
+    
+    "licencias": {
+    "microsoft_office": {
+        "version": "Microsoft 365 Apps",
+        "tipo": "Corporativa",
+        "proceso_solicitud": "Tu jefe directo debe enviar formato oficial a Jorge Pulido para instalación o licencia nueva"
+    },
+    "autocad": {
+        "version": "AutoCAD 2024",
+        "tipo": "Licencia Autodesk",
+        "proceso_solicitud": "Tu jefe directo debe enviar formato oficial a Jorge Pulido para instalación o licencia nueva"
+    }
+    },
+    
+    "aplicativos": [
+    {
+        "nombre": "Gestión de Casos (Legal)",
+        "tipo": "Plataforma judicial",
+        "url": "https://casos.axia.local",
+        "descripcion": "Plataforma para seguimiento de expedientes y plazos judiciales",
+        "troubleshooting": [
+        "Si está lento: verificar conexión VPN",
+        "Cerrar sesión y volver a entrar",
+        "Limpiar caché del navegador",
+        "Contactar IT si el problema persiste"
+        ]
+    },
+    {
+        "nombre": "Base de Datos de Jurisprudencia",
+        "tipo": "Biblioteca digital",
+        "url": "https://biblio.axia.local",
+        "descripcion": "Acceso a biblioteca digital de leyes y casos",
+        "credenciales": "Usuario y contraseña de red",
+        "troubleshooting": [
+        "Verificar usuario y contraseña de red",
+        "Confirmar acceso a red corporativa",
+        "Limpiar cookies del navegador",
+        "Solicitar restablecimiento de contraseña a IT"
+        ]
+    },
+    {
+        "nombre": "Firma Digital/Certificados",
+        "tipo": "Herramienta de firma electrónica",
+        "descripcion": "Firma electrónica de documentos legales",
+        "troubleshooting": [
+        "Verificar que el certificado esté vigente",
+        "Confirmar instalación correcta en el equipo",
+        "Renovar certificado si está vencido",
+        "Contactar IT para reinstalación"
+        ]
+    }
+    ],
+    
+    "soporte": {
+    "extension": "301",
+    "email": "soporte@axia.com.co",
+    "horario": "Lunes a Viernes 8:00am - 6:00pm",
+    "contacto_it": "Jorge Pulido - Infraestructura IT"
+    }
+}

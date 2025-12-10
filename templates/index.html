@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte AVI - Gestion de Incidentes IT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f3f2f1;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .chat-container {
+            width: 100%;
+            height: 100vh;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #003594;
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #e1dfdd;
+            min-height: 60px;
+            flex-shrink: 0;
+        }
+
+        .header-icon {
+            width: 32px;
+            height: 32px;
+            background: #E10600;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        .chat-header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+            color: white;
+        }
+
+        .chat-header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 2px;
+            color: #e8e8ff;
+        }
+
+        .new-chat-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+    
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 24px;
+            background: #f8f8f8;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message.assistant {
+            justify-content: flex-start;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            line-height: 1.4;
+            font-size: 0.95rem;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #003594 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .message.assistant .message-content {
+            background: white;
+            color: #333;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .message.assistant .message-avatar {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .chat-input-container {
+            padding: 16px 24px;
+            background: white;
+            border-top: 1px solid #e1dfdd;
+            flex-shrink: 0;
+        }
+
+        .chat-input-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        #messageInput:focus {
+            border-color: #003594;
+        }
+
+        #messageInput:disabled {
+            background: #f8f9fa;
+            cursor: not-allowed;
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #003594 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            font-size: 1.1rem;
+        }
+
+        .send-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .error-message {
+            background: #fff5f5;
+            color: #c53030;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #feb2b2;
+            font-size: 0.9rem;
+        }
+
+        .status-indicator {
+            padding: 4px 12px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            font-size: 12px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-right: 12px;
+        }
+
+        .status-indicator.connected::before {
+            content: "●";
+            color: #92c5f7;
+        }
+
+        .status-indicator.disconnected::before {
+            content: "●";
+            color: #f78c92;
+        }
+
+        /* Scrollbar styling */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        /* Teams full-screen responsive design */
+        @media (max-width: 768px) {
+            .chat-header {
+                padding: 12px 16px;
+                min-height: 56px;
+            }
+
+            .header-content h1 {
+                font-size: 18px;
+            }
+
+            .chat-messages {
+                padding: 12px 16px;
+                gap: 12px;
+            }
+
+            .message-content {
+                max-width: 85%;
+                font-size: 13px;
+            }
+
+            .chat-input-container {
+                padding: 12px 16px;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="header-icon">👥</div>
+            <div class="header-content">
+                <h1>Soporte AVI</h1>
+                <div class="subtitle">Asistente BOT de IT</div>
+            </div>
+            <div class="status-indicator" id="statusIndicator">Connecting...</div>
+            
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message assistant">
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                  ¡Hola!  Soy AVI 🤖, tu asistente de Soporte IT.
+
+                <br>Cuéntame qué te está pasando y te ayudo rápido:  
+                <br>- “No me llega el correo”  
+                <br>- “La impresora no responde”  
+                <br>- “Mi Teams se cierra solo”  
+                <br>- “Necesito acceso a una carpeta”  
+                <br>- O cualquier otra cosa…
+
+                <br>¡Escribe tu problema en una frase y lo resolvemos juntos! 😊
+                </div>
+            </div>
+        </div>
+
+        <div class="loading" id="loadingIndicator">
+            🤔 AI esta pensado...
+        </div>
+        
+        <div class="chat-input-container">
+            <form class="chat-input-form" onsubmit="sendMessage(event)">
+                <input 
+                    type="text" 
+                    id="messageInput" 
+                    placeholder="Pregunta o indicame tu necesidad..." 
+                    autocomplete="off"
+                >
+                <button type="submit" class="send-btn" id="sendBtn">
+                    ➤
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const statusIndicator = document.getElementById('statusIndicator');
+
+        let currentThreadId = null;
+
+        // Check health status on load
+        checkHealth();
+
+        async function checkHealth() {
+            try {
+                const response = await fetch('/health');
+                if (response.ok) {
+                    statusIndicator.textContent = 'Connected';
+                    statusIndicator.className = 'status-indicator connected';
+                } else {
+                    throw new Error('Health check failed');
+                }
+            } catch (error) {
+                statusIndicator.textContent = 'Disconnected';
+                statusIndicator.className = 'status-indicator disconnected';
+                console.error('Health check failed:', error);
+            }
+        }
+
+        function addMessage(content, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'assistant'}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = isUser ? '👤' : '🤖';
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            messageContent.textContent = content;
+            
+            if (isUser) {
+                messageDiv.appendChild(messageContent);
+                messageDiv.appendChild(avatar);
+            } else {
+                messageDiv.appendChild(avatar);
+                messageDiv.appendChild(messageContent);
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = `Error: ${message}`;
+            chatMessages.appendChild(errorDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function setLoading(isLoading) {
+            if (isLoading) {
+                loadingIndicator.classList.add('show');
+                sendBtn.disabled = true;
+                messageInput.disabled = true;
+            } else {
+                loadingIndicator.classList.remove('show');
+                sendBtn.disabled = false;
+                messageInput.disabled = false;
+            }
+        }
+
+        async function sendMessage(event) {
+            event.preventDefault();
+            
+            const message = messageInput.value.trim();
+            if (!message) return;
+            
+            // Add user message to chat
+            addMessage(message, true);
+            messageInput.value = '';
+            
+            setLoading(true);
+            
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Failed to send message');
+                }
+                
+                const data = await response.json();
+                
+                // Update thread ID if provided
+                if (data.thread_id) {
+                    currentThreadId = data.thread_id;
+                }
+                
+                // Add assistant response
+                addMessage(data.response);
+                
+            } catch (error) {
+                console.error('Error sending message:', error);
+                showError(error.message || 'Failed to send message');
+            } finally {
+                setLoading(false);
+                messageInput.focus();
+            }
+        }
+
+        async function startNewConversation() {
+            try {
+                const response = await fetch('/new-conversation', {
+                    method: 'POST'
+                });
+                
+                if (response.ok) {
+                    // Clear chat messages
+                    chatMessages.innerHTML = '';
+                    currentThreadId = null;
+                    
+                    // Add welcome message
+                    addMessage(`¡Hola!  Soy AVI 🤖, tu asistente de Soporte IT.
+
+Cuéntame qué te está pasando y te ayudo rápido:  
+ “No me llega el correo”  
+ “La impresora no responde”  
+ “Mi Teams se cierra solo”  
+ “Necesito acceso a una carpeta”  
+ O cualquier otra cosa…
+
+ ¡Escribe tu problema en una frase y lo resolvemos juntos! 😊`);
+                } else {
+                    showError('fallo  en iniciar una nuev conversacion');
+                }
+            } catch (error) {
+                console.error('Error  en iniciar una nuev conversacion:', error);
+                showError('Error  en iniciar una nuev conversacion');
+            }
+        }
+
+        // Focus input on load
+        messageInput.focus();
+
+        // Auto-resize functionality
+        messageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                if (!sendBtn.disabled) {
+                    sendMessage(e);
+                }
+            }
+        });
+
+        // Periodic health check
+        setInterval(checkHealth, 30000); // Check every 30 seconds
+    </script>
+
+    <div style="position:fixed;bottom:8px;right:12px;font-size:10px;color:#999;opacity:0.7;">
+    Proyecto AVI • Gestión de Incidentes IT • 2025-2026
+    </div>
+</body>
+</html>
