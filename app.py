@@ -36,7 +36,7 @@ def is_affirmative(text):
 
 def is_negative(text):
     text = text.lower()
-    neg_patterns = ["no", "sigue sin", "no funciona", "nada", "no puedo", "no puedo acceder", "fallando"]
+    neg_patterns = ["no", "sigue sin funcionar", "no funciona", "nada", "no puedo", "no puedo acceder", "fallando"]
     return any(pat in text for pat in neg_patterns)
 
 PASOS_TROUBLESHOOTING = {
