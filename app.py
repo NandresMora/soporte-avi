@@ -81,7 +81,7 @@ PASOS_TROUBLESHOOTING = {
             "pregunta": "Reinicia el servicio:\n1. Busca 'Servicios'\n2. 'Cola de impresión' > Reiniciar\n\n👉 Responde: **resuelto** / **sigue igual**",
             "si_falla": "ticket"
         }
-    ]
+    ],
     "lentitud": [
         {
             "paso": 1,
