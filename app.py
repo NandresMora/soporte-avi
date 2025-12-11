@@ -82,6 +82,34 @@ PASOS_TROUBLESHOOTING = {
             "si_falla": "ticket"
         }
     ]
+    "lentitud": [
+        {
+            "paso": 1,
+            "pregunta": "¿Has cerrado todas las aplicaciones y pestañas innecesarias del navegador?\n\n👉 Responde: **ya cerré todo** / **no he cerrado**",
+            "si_falla": "paso_2"
+        },
+        {
+            "paso": 2,
+            "pregunta": "Reinicia tu equipo ahora:\n1. Guarda tu trabajo\n2. Reinicia completamente\n\n👉 Responde: **ya reinicié** / **no puedo reiniciar**",
+            "si_falla": "paso_3"
+        },
+        {
+            "paso": 3,
+            "pregunta": "Verifica tu conexión VPN o WiFi:\nLa lentitud suele venir por conexión inestable.\n\n👉 Responde: **conexión buena** / **conexión mala**",
+            "datos_cliente": True,
+            "si_falla": "paso_4"
+        },
+        {
+            "paso": 4,
+            "pregunta": "Limpia espacio en disco:\n1. Busca 'Liberador de espacio en disco'\n2. Selecciona unidad C: y limpia archivos temporales\n\n👉 Responde: **ya limpié** / **no mejoró**",
+            "si_falla": "paso_5"
+        },
+        {
+            "paso": 5,
+            "pregunta": "Último intento:\n1. Cierra sesión de Windows\n2. Vuelve a iniciar sesión\n\n👉 Responde: **mejoró** / **sigue lento**",
+            "si_falla": "ticket"
+        }
+    ]
 }
 
 
@@ -90,7 +118,7 @@ def create_glpi_ticket(ticket_data, cliente):
     """Crea ticket en GLPI 10.18 LOCAL con XAMPP"""
     
     # 🔗 VERSION LOCAL
-    GLPI_BASE = "https://monzonitic-lila-bipedally.ngrok-free.dev"
+    GLPI_BASE = "https://springily-unshivered-belkis.ngrok-free.dev"
     GLPI_API = f"{GLPI_BASE}/glpi/apirest.php"
     
     # 🔑 Credenciales + App-Token REAL
